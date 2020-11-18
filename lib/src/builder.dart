@@ -324,7 +324,9 @@ class MarkdownBuilder implements md.NodeVisitor {
             crossAxisAlignment: CrossAxisAlignment.baseline,
             children: <Widget>[
               SizedBox(
-                width: styleSheet.listIndent,
+                width: styleSheet.listIndent +
+                    styleSheet.listBulletPadding.left +
+                    styleSheet.listBulletPadding.right,
                 child: bullet,
               ),
               Expanded(child: child)
@@ -446,7 +448,7 @@ class MarkdownBuilder implements md.NodeVisitor {
       return checkboxBuilder(checked);
     }
     return Padding(
-      padding: const EdgeInsets.only(right: 4),
+      padding: styleSheet.listBulletPadding,
       child: Icon(
         checked ? Icons.check_box : Icons.check_box_outline_blank,
         size: styleSheet.checkbox.fontSize,
@@ -466,7 +468,7 @@ class MarkdownBuilder implements md.NodeVisitor {
 
     final int index = _blocks.last.nextListIndex;
     return Padding(
-      padding: const EdgeInsets.only(right: 4),
+      padding: styleSheet.listBulletPadding,
       child: Text(
         '${index + 1}.',
         textAlign: TextAlign.right,
