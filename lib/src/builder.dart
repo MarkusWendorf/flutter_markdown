@@ -459,10 +459,13 @@ class MarkdownBuilder implements md.NodeVisitor {
 
   Widget _buildBullet(String listTag) {
     if (listTag == 'ul') {
-      return Text(
-        '•',
-        textAlign: TextAlign.center,
-        style: styleSheet.listBullet,
+      return Padding(
+        padding: styleSheet.listBulletPadding,
+        child: Text(
+          '•',
+          textAlign: TextAlign.center,
+          style: styleSheet.listBullet,
+        ),
       );
     }
 
